@@ -16,7 +16,7 @@ test('finished turn notifies while away, plays sound, and opens the session on c
   assert.match(p.notes[0].title, /回复完成/)
   assert.equal(p.notes[0].opts.silent, true)
   assert.equal(p.fetchCalls.length, 1)
-  assert.equal(p.fetchCalls[0].url, '/__dsh-ping/sound')
+  assert.equal(p.fetchCalls[0].url, '/__dsh-ping-macos/sound')
   p.notes[0].onclick()
   assert.deepEqual(p.opened, ['s1'])
 })
@@ -96,10 +96,23 @@ test('dispose removes listeners and stops reporting', () => {
   assert.equal(p.notes.length, 1)
 })
 
+test('default copy is Chinese, English is opt-in', () => {
+  const zh = loadPlugin({ focused: false })
+  finish(zh.list)
+  assert.match(zh.notes[0].title, /回复完成/)
+  const en = loadPlugin({
+    focused: false,
+    storage: { [CONFIG_KEY]: JSON.stringify({ lang: 'en' }) },
+  })
+  finish(en.list)
+  assert.equal(en.notes[0].title, 'Reply finished')
+  assert.equal(en.state().config.lang, 'en')
+})
+
 test('settings section registers and renders', () => {
   const p = loadPlugin({ react: true })
   assert.equal(p.registered.length, 1)
-  assert.equal(p.registered[0].opts.id, 'dsh-ping')
+  assert.equal(p.registered[0].opts.id, 'dsh-ping-macos')
   assert.equal(p.registered[0].opts.name, 'settings.section')
   const element = p.registered[0].component()
   assert.equal(typeof element.type, 'function')

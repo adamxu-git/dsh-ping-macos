@@ -64,7 +64,7 @@ test('sound route rejects a cross-origin caller', () => {
   const res = call(handler, 'POST', {
     host: '127.0.0.1:1234',
     origin: 'https://evil.example',
-    'x-dsh-ping': 'sound',
+    'x-dsh-ping-macos': 'sound',
   })
   assert.equal(res.status, 403)
 })
@@ -74,7 +74,7 @@ test('sound route rejects a non-local Host', () => {
   const res = call(handler, 'POST', {
     host: 'evil.example:1234',
     origin: 'https://evil.example',
-    'x-dsh-ping': 'sound',
+    'x-dsh-ping-macos': 'sound',
   })
   assert.equal(res.status, 403)
 })

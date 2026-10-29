@@ -1,6 +1,6 @@
 {
-  "name": "dsh-ping",
-  "version": "0.1.0",
+  "name": "dsh-ping-macos",
+  "version": "0.2.0",
   "description": "Minimal macOS notifications for DeepSeek Harness: reply finished / needs your input.",
   "type": "module",
   "main": "lib/index.js",

@@ -1,4 +1,4 @@
-# dsh-ping
+# dsh-ping-macos
 
 [English](README.en.md) | 中文
 
@@ -22,26 +22,26 @@
 ## 文件
 
 - `lib/client.js` — 全部逻辑（浏览器半）
-- `lib/index.js` — 宿主半：注册 `POST /__dsh-ping/sound`，用 `afplay` 播放 macOS 的 Glass 提示音
+- `lib/index.js` — 宿主半：注册 `POST /__dsh-ping-macos/sound`，用 `afplay` 播放 macOS 的 Glass 提示音
 - `package.json` — `dsh.client.platform: web`
 - `cordis.patch.yml` — 打包用（作为 bundle 安装时）
 
 ## 安装
 
-> npm 上的 `dsh-ping` 已被另一个同赛道插件占用，本仓库暂未发布 npm 包；先按源码安装。
+> npm 包名 `dsh-ping-macos`（`dsh-ping` 已被另一个同赛道插件占用）。发布前先从源码安装。
 
 **Desktop**
 
 ```sh
-git clone <repo-url> ~/.dsh/profiles/desktop/node_modules/dsh-ping
+git clone <repo-url> ~/.dsh/profiles/desktop/node_modules/dsh-ping-macos
 ```
 
-然后在 `~/.dsh/profiles/desktop/package.json` 的 `dsh.profile.bundles` 里加一行 `"dsh-ping"`，**Cmd+Q 完全退出**再打开。
+然后在 `~/.dsh/profiles/desktop/package.json` 的 `dsh.profile.bundles` 里加一行 `"dsh-ping-macos"`，**Cmd+Q 完全退出**再打开。
 
 **Web**
 
 ```sh
-dsh plugin --profile web add file:/path/to/dsh-ping
+dsh plugin --profile web add file:/path/to/dsh-ping-macos
 ```
 
 装完重启对应的 `dsh web`，硬刷新页面。
@@ -72,7 +72,7 @@ __dshPing.test('attention')  // 立即弹一条待处理通知
 ```sh
 cp ~/.dsh/profiles/desktop/cordis.patch.yml.bak-20261029-203052 \
    ~/.dsh/profiles/desktop/cordis.patch.yml
-rm -rf ~/.dsh/profiles/desktop/node_modules/dsh-ping
+rm -rf ~/.dsh/profiles/desktop/node_modules/dsh-ping-macos
 ```
 
 然后重启 DSH Desktop。

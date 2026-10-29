@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0 — 2026-10-29
+
+- Renamed the package, loader id, bundle, locale namespace and sound route to
+  `dsh-ping-macos` (the npm name `dsh-ping` belongs to another plugin).
+- Settings and notification copy now default to Chinese, with an explicit
+  `中文 / English` selector stored as `lang` in the plugin config. The host UI
+  language no longer decides the plugin copy.
+- Settings page: language row; the rest is unchanged.
+
 ## 0.1.0 — 2026-10-29
 
 First working version.

@@ -1,4 +1,4 @@
-# dsh-ping
+# dsh-ping-macos
 
 Minimal macOS notifications for DeepSeek Harness: a system banner + the
 standard macOS alert (Glass) when a reply finishes or the agent needs you.
@@ -25,21 +25,21 @@ Clicking a notification calls `dsh://open` and then `sessions.open(id)` or
 
 ## Install (source, until the npm name is settled)
 
-The npm name `dsh-ping` is already taken by another plugin, so this repository
-is not published under that name yet. To run it locally:
+The package name is `dsh-ping-macos` (`dsh-ping` itself is taken by another
+plugin). Until it is published, run it from source:
 
 ```sh
 git clone <this repo> \
-  ~/.dsh/profiles/desktop/node_modules/dsh-ping
+  ~/.dsh/profiles/desktop/node_modules/dsh-ping-macos
 ```
 
-Then add `"dsh-ping"` to `dsh.profile.bundles` in
+Then add `"dsh-ping-macos"` to `dsh.profile.bundles` in
 `~/.dsh/profiles/desktop/package.json`, fully quit DSH (Cmd+Q), and reopen.
 
 For the Web profile:
 
 ```sh
-dsh plugin --profile web add file:/path/to/dsh-ping
+dsh plugin --profile web add file:/path/to/dsh-ping-macos
 ```
 
 ## Settings
@@ -59,7 +59,7 @@ Stored in `localStorage` under `dshPing.config.v1`; no network.
 ## Structure
 
 - `lib/client.js` — detection, policy, notifications, settings page
-- `lib/index.js` — `POST /__dsh-ping/sound`, gated to loopback + marker header
+- `lib/index.js` — `POST /__dsh-ping-macos/sound`, gated to loopback + marker header
 - `cordis.patch.yml` — bundle patch that mounts the plugin
 - `test/` — `node --test` suite with fake services
 
