@@ -1,5 +1,7 @@
 # dsh-ping-macos
 
+[![npm](https://img.shields.io/npm/v/dsh-ping-macos.svg)](https://www.npmjs.com/package/dsh-ping-macos)
+
 Minimal macOS notifications for DeepSeek Harness: a system banner + the
 standard macOS alert (Glass) when a reply finishes or the agent needs you.
 Clicking the notification raises the window and opens that conversation.
@@ -23,10 +25,21 @@ reply-finished policy (away / always / off, default away), needs-input policy
 Clicking a notification calls `dsh://open` and then `sessions.open(id)` or
 `uiWorkspace.openSession(id)` to switch conversations.
 
-## Install (source, until the npm name is settled)
+## Install
 
-The package name is `dsh-ping-macos` (`dsh-ping` itself is taken by another
-plugin). Until it is published, run it from source:
+**Desktop**: Plugins → **Add plugin** → search `dsh-ping-macos` → install →
+fully quit (Cmd+Q) and reopen.
+
+**Web**:
+
+```sh
+dsh plugin --profile web add dsh-ping-macos
+```
+
+Restart that `dsh web` and hard-refresh the page.
+
+<details>
+<summary>From source (development)</summary>
 
 ```sh
 git clone https://github.com/adamxu-git/dsh-ping-macos.git \
@@ -34,13 +47,9 @@ git clone https://github.com/adamxu-git/dsh-ping-macos.git \
 ```
 
 Then add `"dsh-ping-macos"` to `dsh.profile.bundles` in
-`~/.dsh/profiles/desktop/package.json`, fully quit DSH (Cmd+Q), and reopen.
+`~/.dsh/profiles/desktop/package.json`, fully quit DSH, and reopen.
 
-For the Web profile:
-
-```sh
-dsh plugin --profile web add file:/path/to/dsh-ping-macos
-```
+</details>
 
 ## Settings
 

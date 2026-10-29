@@ -2,6 +2,8 @@
 
 [English](README.en.md) | 中文
 
+[![npm](https://img.shields.io/npm/v/dsh-ping-macos.svg)](https://www.npmjs.com/package/dsh-ping-macos)
+
 最小可用的 macOS 通知插件：DeepSeek Harness 里**回复跑完**或**需要你介入**时，右上角弹一条系统通知 + macOS 标准提示音（Glass），点通知回到窗口并切到该会话。
 
 没有 Dock 角标、没有菜单栏图标、没有网络请求。一个 client 插件 + 一个只负责 `afplay` 的极小的宿主半。
@@ -28,25 +30,29 @@
 
 ## 安装
 
-> npm 包名 `dsh-ping-macos`（`dsh-ping` 已被另一个同赛道插件占用）。发布前先从源码安装。
+**Desktop**：插件 → **添加插件** → 搜索 `dsh-ping-macos` → 安装 → **Cmd+Q 完全退出**再打开。
 
-**Desktop**
-
-```sh
-git clone https://github.com/adamxu-git/dsh-ping-macos.git ~/.dsh/profiles/desktop/node_modules/dsh-ping-macos
-```
-
-然后在 `~/.dsh/profiles/desktop/package.json` 的 `dsh.profile.bundles` 里加一行 `"dsh-ping-macos"`，**Cmd+Q 完全退出**再打开。
-
-**Web**
+**Web**：
 
 ```sh
-dsh plugin --profile web add file:/path/to/dsh-ping-macos
+dsh plugin --profile web add dsh-ping-macos
 ```
 
 装完重启对应的 `dsh web`，硬刷新页面。
 
+<details>
+<summary>从源码安装（开发）</summary>
+
+```sh
+git clone https://github.com/adamxu-git/dsh-ping-macos.git \
+  ~/.dsh/profiles/desktop/node_modules/dsh-ping-macos
+```
+
+然后在 `~/.dsh/profiles/desktop/package.json` 的 `dsh.profile.bundles` 里加 `"dsh-ping-macos"`，**Cmd+Q** 后重开。
+
 > 不要手动往 `cordis.patch.yml` 里插 `insert` 行：DSH 改写 patch 层时会把不认识的行清掉。这个包用 `dsh.bundle.patch` + `dsh.profile.bundles` 挂载。
+
+</details>
 
 ## 验证
 
