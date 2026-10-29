@@ -1,0 +1,5 @@
+# Bundle patch layer: one loader row for the package. The row loads lib/index.js
+# (a no-op host plugin) so dsh-client-modules serves ./client as the browser half.
+- insert:
+    - id: dsh-ping
+      name: dsh-ping

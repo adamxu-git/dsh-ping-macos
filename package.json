@@ -1,0 +1,51 @@
+{
+  "name": "dsh-ping",
+  "version": "0.1.0",
+  "description": "Minimal macOS notifications for DeepSeek Harness: reply finished / needs your input.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.1-rc.2": "compatible"
+      }
+    }
+  },
+  "license": "MIT",
+  "author": "adamxu-git",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "pack": "npm pack --dry-run"
+  },
+  "files": [
+    "lib/",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "dsh",
+    "macos",
+    "notification",
+    "desktop-notification"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}
