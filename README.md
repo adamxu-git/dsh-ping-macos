@@ -33,7 +33,7 @@
 **Desktop**
 
 ```sh
-git clone <repo-url> ~/.dsh/profiles/desktop/node_modules/dsh-ping-macos
+git clone https://github.com/adamxu-git/dsh-ping-macos.git ~/.dsh/profiles/desktop/node_modules/dsh-ping-macos
 ```
 
 然后在 `~/.dsh/profiles/desktop/package.json` 的 `dsh.profile.bundles` 里加一行 `"dsh-ping-macos"`，**Cmd+Q 完全退出**再打开。

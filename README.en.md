@@ -29,7 +29,7 @@ The package name is `dsh-ping-macos` (`dsh-ping` itself is taken by another
 plugin). Until it is published, run it from source:
 
 ```sh
-git clone <this repo> \
+git clone https://github.com/adamxu-git/dsh-ping-macos.git \
   ~/.dsh/profiles/desktop/node_modules/dsh-ping-macos
 ```
 
