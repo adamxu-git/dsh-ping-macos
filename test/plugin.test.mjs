@@ -119,3 +119,64 @@ test('settings section registers and renders', () => {
   const rendered = element.type(element.props)
   assert.equal(rendered.type, 'div')
 })
+
+test('Russian copy is opt-in and used for single notifications', () => {
+  const p = loadPlugin({
+    focused: false,
+    storage: { [CONFIG_KEY]: JSON.stringify({ lang: 'ru' }) },
+  })
+  finish(p.list, 's1', 'Рефакторинг')
+  assert.equal(p.notes[0].title, 'Ответ готов')
+  assert.equal(p.notes[0].opts.body, '«Рефакторинг» — ход завершён')
+  assert.equal(p.state().config.lang, 'ru')
+})
+
+test('batch summary punctuation follows the selected language', () => {
+  const ids = ['s1', 's2', 's3', 's4']
+  const finishMany = (p) => {
+    p.list.set({ byId: Object.fromEntries(ids.map((id) => [id, { running: true, title: id }])) })
+    p.list.set({ byId: Object.fromEntries(ids.map((id) => [id, { running: false, title: id }])) })
+  }
+
+  const zh = loadPlugin({ focused: false })
+  finishMany(zh)
+  assert.equal(zh.notes[0].title, '4 个会话完成')
+  assert.equal(zh.notes[0].opts.body, '「s1」、「s2」、「s3」 等 4 个会话 已跑完')
+
+  const en = loadPlugin({
+    focused: false,
+    storage: { [CONFIG_KEY]: JSON.stringify({ lang: 'en' }) },
+  })
+  finishMany(en)
+  assert.equal(en.notes[0].opts.body, '“s1”, “s2”, “s3” (+4 more) finished')
+  assert.doesNotMatch(en.notes[0].opts.body, /[「」、]|等/)
+
+  const ru = loadPlugin({
+    focused: false,
+    storage: { [CONFIG_KEY]: JSON.stringify({ lang: 'ru' }) },
+  })
+  finishMany(ru)
+  assert.equal(ru.notes[0].title, 'Готово диалогов: 4')
+  assert.equal(ru.notes[0].opts.body, '«s1», «s2», «s3» и ещё 4 — готово')
+})
+
+test('settings offers Russian as a copy language', () => {
+  const p = loadPlugin({ react: true })
+  const element = p.registered[0].component()
+  const rendered = element.type(element.props)
+  const selects = []
+  const walk = (node) => {
+    if (!node || typeof node !== 'object') return
+    if (Array.isArray(node)) return node.forEach(walk)
+    if (node.type === 'select') {
+      // the fake createElement keeps `items.map(...)` as a single child argument
+      const options = (node.children ?? []).flat().map((o) => o?.children?.[0])
+      selects.push({ value: node.props.value, options })
+    }
+    if (node.children) walk(node.children)
+  }
+  walk(rendered)
+  const language = selects.find((s) => s.options.includes('Русский'))
+  assert.ok(language, 'the language select should list Русский')
+  assert.deepEqual(language.options, ['中文', 'English', 'Русский'])
+})
