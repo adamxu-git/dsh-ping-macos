@@ -1,12 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.2.1 — 2026-11-14
 
 - Russian copy (`lang: 'ru'`), selectable in Settings → Notifications next to
   中文 and English. The default stays Chinese.
 - The batch summary no longer hard-codes Chinese punctuation: quotes, the list
   separator and the “N more” suffix come from the selected language, so English
   and Russian summaries stop rendering `「会话」` and `等 N 个会话`.
+
+Thanks to @flikos for the Russian locale and the punctuation fix (#1).
 
 ## 0.2.0 — 2026-10-29
 
