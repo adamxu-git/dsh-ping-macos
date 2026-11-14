@@ -62,6 +62,7 @@ the core reminder works even when `slots`/`locale` are unavailable.
 | `done` | `away` | when a finished turn notifies |
 | `attention` | `always` | when an approval/question notifies |
 | `sound` | true | play `Glass.aiff` through the host |
+| `lang` | `zh` | notification and settings copy: `zh` / `en` / `ru` |
 
 Stored in `localStorage` under `dshPing.config.v1`; no network.
 
